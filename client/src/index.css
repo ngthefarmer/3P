@@ -1,0 +1,383 @@
+:root {
+  color-scheme: dark;
+  --bg: #0f1720;
+  --panel: #182531;
+  --panel-border: #2a3a48;
+  --felt: #0b5a3b;
+  --felt-edge: #0a4530;
+  --gold: #d4af37;
+  --text: #e8edf2;
+  --muted: #93a3b0;
+  --red: #e05252;
+  --danger: #c0392b;
+  --accent: #2f8f5b;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+h1, h2 {
+  margin: 0 0 8px;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.centered-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  gap: 20px;
+}
+
+.card-panel {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 24px;
+  min-width: 300px;
+}
+
+.auth-panel {
+  max-width: 380px;
+}
+
+.tab-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tab {
+  flex: 1;
+  padding: 8px;
+  background: transparent;
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.tab.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+input {
+  background: #0f1a22;
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  padding: 10px;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: white;
+}
+
+.btn.primary:hover {
+  background: #3aa86c;
+}
+
+.btn.ghost {
+  background: transparent;
+  border: 1px solid var(--panel-border);
+  color: var(--text);
+}
+
+.btn.danger {
+  background: var(--danger);
+  color: white;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error-text {
+  color: var(--red);
+  font-size: 14px;
+}
+
+.lobby-header {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.lobby-panels {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Table page */
+.table-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.table-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.poker-table {
+  position: relative;
+  flex: 1;
+  margin: 20px auto;
+  width: min(1000px, 92vw);
+  height: min(560px, 60vh);
+  background: radial-gradient(ellipse at center, var(--felt) 0%, var(--felt-edge) 100%);
+  border: 10px solid #3b2a1a;
+  border-radius: 50%;
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.5), 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.table-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.pot-display {
+  font-size: 22px;
+}
+
+.stake-display {
+  font-size: 14px;
+  color: var(--text);
+  opacity: 0.85;
+}
+
+.last-result {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.35);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.seat {
+  position: absolute;
+  width: 150px;
+  background: rgba(15, 23, 32, 0.9);
+  border: 2px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 8px;
+  text-align: center;
+}
+
+.seat.empty {
+  background: rgba(15, 23, 32, 0.4);
+  border-style: dashed;
+}
+
+.seat-empty-label {
+  color: var(--muted);
+  font-size: 13px;
+  padding: 12px 0;
+}
+
+.seat.is-turn {
+  border-color: var(--gold);
+  box-shadow: 0 0 12px var(--gold);
+}
+
+.seat.folded {
+  opacity: 0.55;
+}
+
+.seat.disconnected {
+  filter: grayscale(0.6);
+}
+
+.seat.awaiting-sideshow {
+  border-color: #4aa3ff;
+}
+
+.seat-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.seat-chips {
+  font-size: 12px;
+  color: var(--gold);
+  margin: 4px 0;
+}
+
+.seat-cards {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin: 6px 0;
+}
+
+.seat-status-row {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  background: var(--panel-border);
+}
+
+.dealer-badge {
+  background: var(--gold);
+  color: #222;
+}
+
+.me-badge {
+  background: var(--accent);
+  color: white;
+}
+
+.fold-badge {
+  background: var(--danger);
+  color: white;
+}
+
+.blind-badge {
+  background: #555;
+}
+
+.seen-badge {
+  background: var(--accent);
+}
+
+.disconnected-badge {
+  background: #444;
+}
+
+.reveal-badge {
+  background: #4aa3ff;
+  color: #06202e;
+}
+
+.playing-card {
+  width: 34px;
+  height: 48px;
+  background: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: #111;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.playing-card.red {
+  color: var(--red);
+}
+
+.playing-card.face-down {
+  background: repeating-linear-gradient(45deg, #23405c, #23405c 4px, #1a3049 4px, #1a3049 8px);
+}
+
+.action-bar {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  flex-wrap: wrap;
+}
+
+.action-hint {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.log-panel {
+  max-height: 140px;
+  overflow-y: auto;
+  background: var(--panel);
+  border-top: 1px solid var(--panel-border);
+  padding: 8px 20px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.log-line {
+  padding: 2px 0;
+}
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.error-toast {
+  background: var(--danger);
+  color: white;
+}
